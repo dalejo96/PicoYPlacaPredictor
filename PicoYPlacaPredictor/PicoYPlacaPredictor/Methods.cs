@@ -53,34 +53,32 @@ namespace PicoYPlacaPredictor
             //splitter[1] minutos
             int hours = int.Parse(splitterTime[0]);
             int minutes = int.Parse(splitterTime[1]);
-            bool validateHours,validateMinutes;
+            bool globalvalidationOfTime;
             //set the ranges of PicoYPlaca Restriction 
             //Hours: 7:00 - 9:30 / 16:00 - 19:30
             if ((hours<=9 & hours>=7)|(hours <= 19 & hours >= 16))
             {
-                validateHours = true;
+                if (hours==9 | hours ==19)
+                {
+                    if ((minutes <= 30 & minutes >= 0))
+                    {
+                        globalvalidationOfTime = true;
+                    }
+                    else
+                    {
+                        globalvalidationOfTime = false;
+                    }
+                }
+                else
+                {
+                    globalvalidationOfTime = true;
+                }
             }
             else
             {
-                validateHours = false;
+                 globalvalidationOfTime = false;
             }
-            if ((minutes <= 30 & minutes >= 0))
-            {
-                validateMinutes = true;
-            }
-            else
-            {
-                validateMinutes = false;
-            }
-            //validate range of formatted time, return true if is in range, return false if is not
-            if (validateHours & validateMinutes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return globalvalidationOfTime;
         }
         public static bool CanRoad(PicoPlaca obj)
         {

@@ -6,7 +6,7 @@ namespace PicoYPlacaPredictor
     {
         static void Main(string[] args)
         {            
-            Console.WriteLine("Welcome to your predictor of Pico Y Placa. You must enter the next information in the right format.");
+            Console.WriteLine("Welcome to your predictor of Pico Y Placa.\nYou must enter the next information in the right format.");
             int platenumber = AskForPlateNumber();
             string date = AskForDate();
             string time = AskForTime();

@@ -233,6 +233,34 @@ namespace UnitTestProjectPicoyPlacaPredictor
             Assert.AreEqual(expected, actual);
         }
 
+        //VerifyTime Test
+        //Evaluates if the time is between the PicoYPlaca restrictions range
+        [TestMethod]
+        public void VerifyTime_IsInRangeAndReturnTrue()
+        {
+            //Arrange
+            PicoPlaca picoPlacaobj = new PicoPlaca();
+            picoPlacaobj.FormattedTime = "8:25";
+            bool expected = true;
+            //Act
+            bool actual = Methods.VerifyTime(picoPlacaobj.FormattedTime);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        //Evaluates if the time is not between the PicoYPlaca restrictions range
+        [TestMethod]
+        public void VerifyTime_IsNotInRangeAndReturnFalse()
+        {
+            //Arrange
+            PicoPlaca picoPlacaobj = new PicoPlaca();
+            picoPlacaobj.FormattedTime = "12:25";
+            bool expected = false;
+            //Act
+            bool actual = Methods.VerifyTime(picoPlacaobj.FormattedTime);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         //CanRoad Test
         //Evaluates if the car can road in PicoYPlaca restriction
         [TestMethod]

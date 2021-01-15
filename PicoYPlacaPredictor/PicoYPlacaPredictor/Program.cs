@@ -10,7 +10,7 @@ namespace PicoYPlacaPredictor
             int platenumber = AskForPlateNumber();
             string date = AskForDate();
             string time = AskForTime();
-            Calculate(platenumber, date, time);
+            CalculateCanRoad(platenumber, date, time);
 
         }
         //fill valida Plate Number
@@ -21,7 +21,7 @@ namespace PicoYPlacaPredictor
             string plate = Console.ReadLine();
             int platenumber = 0;
             //validate length and int
-            while (!(int.TryParse(plate, out platenumber) && plate.Length == 4))
+            while (!(int.TryParse(plate, out platenumber) & plate.Length == 4))
             {
                 Console.WriteLine("Set a valid Plate Number! (####)");
                 plate = Console.ReadLine();
@@ -90,11 +90,11 @@ namespace PicoYPlacaPredictor
                     string[] splitter = time.Split(':');
                     int horas = Convert.ToInt32(splitter[0]);
                     int minutos = Convert.ToInt32(splitter[1]);
-                    if (!(horas <= 23 && horas >= 0))
+                    if (!(horas <= 23 & horas >= 0))
                     {
                         return false;
                     }
-                    if (!(minutos <= 59 && minutos >= 0))
+                    if (!(minutos <= 59 & minutos >= 0))
                     {
                         return false;
                     }
@@ -112,13 +112,21 @@ namespace PicoYPlacaPredictor
         }
 
         //calculate if the car can or cannot go to streets
-        private static void Calculate(int platenumber, string date, string time)
+        private static void CalculateCanRoad(int platenumber, string date, string time)
         {
-            throw new NotImplementedException();
+            PicoPlaca objPicoPlata = new PicoPlaca();
+            objPicoPlata.FormattedDate = date;
+            objPicoPlata.FormattedTime = time;
+            objPicoPlata.NumberPlate = platenumber;
+            //validate if the car can or cannot road
+            if (Methods.CanRoad(objPicoPlata))
+            {
+                Console.WriteLine("You can go to the streets! :-)");
+            }
+            else
+            {
+                Console.WriteLine("You cannot go to the streets! :-(");
+            }
         }
-
-        
-
-        
     }
 }

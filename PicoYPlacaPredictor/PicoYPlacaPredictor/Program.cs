@@ -21,7 +21,7 @@ namespace PicoYPlacaPredictor
             string plate = Console.ReadLine();
             int platenumber = 0;
             //validate length and int
-            while (!(int.TryParse(plate, out platenumber) & plate.Length == 4))
+            while (!(int.TryParse(plate, out platenumber) && plate.Length == 4))
             {
                 Console.WriteLine("Set a valid Plate Number! (####)");
                 plate = Console.ReadLine();
@@ -90,11 +90,11 @@ namespace PicoYPlacaPredictor
                     string[] splitter = time.Split(':');
                     int horas = Convert.ToInt32(splitter[0]);
                     int minutos = Convert.ToInt32(splitter[1]);
-                    if (!(horas <= 23 & horas >= 0))
+                    if (!(horas <= 23 && horas >= 0))
                     {
                         return false;
                     }
-                    if (!(minutos <= 59 & minutos >= 0))
+                    if (!(minutos <= 59 && minutos >= 0))
                     {
                         return false;
                     }
